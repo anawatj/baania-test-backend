@@ -8,7 +8,7 @@ import HouseRequestModel from '../../models/house-request-model';
 const router = express.Router();
 
 router.patch("/home/:id",
-/*[
+[
     body("name")
     .isString()
     .withMessage("name must be provided"),
@@ -18,7 +18,7 @@ router.patch("/home/:id",
     body("post_code")
     .isPostalCode("TH")
     .withMessage("postcode must be provided")
-],*/
+],
 validateRequest,
 async(req:Request,res:Response,next:NextFunction)=>{
     const {name,price,desc,post_code} = req.body;
