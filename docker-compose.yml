@@ -1,0 +1,28 @@
+version: "3"
+services:
+  house-api:
+    container_name: house-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://bannia:bannia@postgres:5432/bannia
+      NODE_ENV: development
+      PORT: 8000
+    ports:
+      - "8000:8000"
+  postgres:
+    container_name: postgres
+    image: postgres:10.4
+    ports:
+      - "5432:5432"
+    volumes: 
+      - ./postgresdata:/var/lib/postgresql/data
+      - ./src/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
+    restart: always
+    environment:
+      POSTGRES_USER: bannia
+      POSTGRES_PASSWORD: bannia
+      POSTGRES_DB: bannia
