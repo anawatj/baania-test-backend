@@ -27,7 +27,8 @@ app.use(deleteHouseRouter);
 app.use(showHouseRouter);
 app.use(postCodeIndexRouter);
 app.use(showPostCode);
-pool.connect(function (err:Error, client, done) {
+console.log(pool);
+pool.connect(function (err, client, done) {
     if (err) throw new Error(err.message);
     console.log('Connected');
   }); 
